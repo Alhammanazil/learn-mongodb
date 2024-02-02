@@ -18,6 +18,33 @@ const movieSchema = new mongoose.Schema({
 // MOVIE MODEL
 const Movie = mongoose.model('Movie', movieSchema);
 
+// FIND MOVIE BY ID
+// Movie.findOne({ _id: '65bc6152b47040372a3a3453' })
+// .then((result) => {
+//     console.log('Movie found:', result);
+// })
+// .catch((err) => {
+//     console.log('error', err);
+// });
+
+// FIND BY ID
+Movie.findById('65bc6152b47040372a3a3453')
+.then((result) => {
+    console.log('Movie found:', result);
+})
+.catch((err) => {
+    console.log('error', err);
+});
+
+// FIND MOVIE BY YEAR
+// Movie.findOne({ year: {$gt: 2018}})
+// .then((result) => {
+//     console.log('Movies released after 2018:', result);
+// })
+// .catch((err) => {
+//     console.log('error', err);
+// }); 
+
 Movie.insertMany([
         {
             "title": "Black Panther",
