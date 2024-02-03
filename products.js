@@ -56,15 +56,44 @@ const productSchema = new mongoose.Schema({
 
 const Product = mongoose.model('Product', productSchema);
 
-// const thshirt = new Product({
-//     name: 'T-shirt Raglan',
-//     price: 50000
+// const product = new Product({
+// 		"name": "Kemeja Flanel",
+// 		"brand": "Hollister",
+// 		"price": 750000,
+// 		"color": "biru muda",
+// 		"size": ["S", "M", "L"],
+// 		"description": "Kemeja flanel dengan warna yang cerah, terbuat dari bahan flanel yang nyaman dan berkualitas tinggi.",
+// 		"condition": "baru",
+// 		"stock": 25,
+// 		"availability": {
+// 			"online": true,
+// 			"offline": true
+// 		}
 // });
 
-thshirt.save()
-    .then((result) => {
-        console.log('Product saved:', result);
-    })
-    .catch((err) => {
-        console.log('error', err);
-    });
+// product.save()
+//     .then((result) => {
+//         console.log('Product saved:', result);
+//     })
+//     .catch((err) => {
+//         console.log('error', err);
+//     });
+
+Product.findOneAndUpdate({name: 'Kemeja Flanel'}, {
+		"name": "Kemeja Flanel",
+		"brand": "Hollister",
+		"price": 150000,
+		"color": "biru muda",
+		"size": ["S", "M", "L"],
+		"description": "Kemeja flanel dengan warna yang cerah, terbuat dari bahan flanel yang nyaman dan berkualitas tinggi.",
+		"condition": "baru",
+		"stock": 10,
+		"availability": {
+			"online": true,
+			"offline": true
+		}
+}, {new: true, runValidators: true}).then((result) => {
+    console.log('Product updated:', result);
+}).catch((err) => {
+    console.log('error', err);
+});
