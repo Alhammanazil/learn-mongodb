@@ -40,7 +40,7 @@ const productSchema = new mongoose.Schema({
         stock: {
             type: Number,
             required: true,
-            min: 0
+            min: [0, 'Stock tidak boleh kurang dari 0']
         },
         availability: {
             online: {
@@ -92,8 +92,10 @@ Product.findOneAndUpdate({name: 'Kemeja Flanel'}, {
 			"online": true,
 			"offline": true
 		}
-}, {new: true, runValidators: true}).then((result) => {
+}, 
+
+{new: true, runValidators: true}).then((result) => {
     console.log('Product updated:', result);
 }).catch((err) => {
-    console.log('error', err);
+    console.log(err.errors.stock.properties.message);
 });
